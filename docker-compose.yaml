@@ -36,10 +36,11 @@
 #
 # Feel free to modify this file to suit your needs.
 ---
-version: '3'
 x-airflow-common:
   &airflow-common
   build: .
+  # apache/airflow:2.0.1 is only published for amd64; run it under emulation on Apple Silicon
+  platform: linux/amd64
   image: ${AIRFLOW_IMAGE_NAME:-extending_airflow:latest}
   environment:
     &airflow-common-env
